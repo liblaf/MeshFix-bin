@@ -23,8 +23,8 @@ jobs:
       - name: Install Tools
         uses: liblaf/actions/install@main
         with:
-          brew: coreutils make
-          choco: gnuwin32-coreutils.install make
+          brew: coreutils
+          choco: gnuwin32-coreutils.install
       - id: checkout
         name: Checkout
         uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
       - name: Configure
         run: cmake . -D CMAKE_BUILD_TYPE=Release
       - name: Build
-        run: make --jobs
+        run: cmake --build .
       - name: Rename
         run: |-
           install -D --mode="u=rwx,go=rx" --verbose "./bin64/MeshFix" "./dist/MeshFix-${{ runner.arch }}-${{ runner.os }}"
